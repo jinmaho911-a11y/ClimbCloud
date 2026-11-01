@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class playerController : MonoBehaviour
 {
     Rigidbody2D rigid2D;
+    Animator animator;
     float jumpForce = 680.0f;
 
     float walkForce = 30.0f;
@@ -15,13 +17,15 @@ public class playerController : MonoBehaviour
     {
         rigid2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && rigid2D.linearVelocity.y == 0)
         {
+            animator.SetTrigger("jump");
             rigid2D.AddForce(transform.up * jumpForce);
         }
 
@@ -34,15 +38,30 @@ public class playerController : MonoBehaviour
         {
             transform.localScale = new Vector3(key, 1, 1);
         }
+        if(transform.position.y <- 8f)
+        {
+            SceneManager.LoadScene("GameScene");
+        }
 
+        //플레이어 속도
         float speedx = Mathf.Abs(rigid2D.linearVelocity.x);
+
 
         if (speedx < maxWalkSpeed)
         {
             rigid2D.AddForce(transform.right * key * walkForce);
         }
+
+        animator.speed = speedx / 2.0f;
+    }
+// 골 도착
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("골인!");
     }
 }
+
 
 //Physics 는 Rigidbody 컴포넌트와 Collider 컴포넌트로 구성됩니다 Rigidbody 컴포넌트는 '힘 계산(물체에 작용하는 중력이나 마찰 등의 힘 계산)' 을 담당하고 Collider 컴포넌트는 '물체의 충돌 판정'
 //을 담당합니다 따라서 Physics를 사용해 물리적인 동작을 하면 오브젝트에는 Rigidbody 와 Collider라는 컴포넌트 두개가 적용된다
@@ -66,3 +85,8 @@ public class playerController : MonoBehaviour
 //    물리동작에 따른 게임을 만들거나 충돌 판정 즐기고 싶으면 유효
 //    사용자 입력 반영하려면 스크립트 작성해야 함
 //    Physics를 사용해 오브젝트를 움직일때 좌표 조작 ㄴㄴ 힘을 조작
+
+
+//메카님(Mecanim)은 애니메이션을 작성하고 실행할 때 유니티 에디터에서 일관되게 조작할 수 있는 기능입니다,
+//    메카님을 사용하면, 게임을 설계할 때 스프라이트 애니메이션을 작성해 각 애니메이션의 교체 시기를 지정할수 있습니다
+//    그러면 게임을 플레이할때 메카님이 오브젝트 상태를 판단하고 자동으로 애니메이션으로 바꿔 재생할수 있슴다
