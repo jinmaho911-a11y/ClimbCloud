@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class playerController : MonoBehaviour
 {
@@ -26,7 +27,13 @@ public class playerController : MonoBehaviour
 
     int key = 0;
         if (Input.GetKey(KeyCode.RightArrow)) key = 1;
+        
         if (Input.GetKey(KeyCode.LeftArrow)) key = -1;
+        
+        if (key != 0)
+        {
+            transform.localScale = new Vector3(key, 1, 1);
+        }
 
         float speedx = Mathf.Abs(rigid2D.linearVelocity.x);
 
@@ -54,3 +61,8 @@ public class playerController : MonoBehaviour
 //1. SpriteRenderer 컴포넌트의 flip의 x를 true 한다
 //2. y축을 기준으로 180도 회전한다
 //3. Sclae를 -1로 바꾼다
+
+//Physics 는 편리한 도구지만 사용 않해도 게임 제작 가능
+//    물리동작에 따른 게임을 만들거나 충돌 판정 즐기고 싶으면 유효
+//    사용자 입력 반영하려면 스크립트 작성해야 함
+//    Physics를 사용해 오브젝트를 움직일때 좌표 조작 ㄴㄴ 힘을 조작
