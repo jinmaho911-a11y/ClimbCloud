@@ -6,9 +6,9 @@ public class playerController : MonoBehaviour
 {
     Rigidbody2D rigid2D;
     Animator animator;
-    float jumpForce = 680.0f;
+    float jumpForce = 300.0f;
 
-    float walkForce = 30.0f;
+    float walkForce = 15.0f;
     float maxWalkSpeed = 2.0f;
 
     SpriteRenderer spriteRenderer;
@@ -23,11 +23,11 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && rigid2D.linearVelocity.y == 0)
-        {
-            animator.SetTrigger("jump");
-            rigid2D.AddForce(transform.up * jumpForce);
-        }
+        if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rigid2D.linearVelocity.y) < 0.01f)
+{
+    animator.SetTrigger("jump");
+    rigid2D.AddForce(Vector2.up * jumpForce);
+}
 
     int key = 0;
         if (Input.GetKey(KeyCode.RightArrow)) key = 1;
