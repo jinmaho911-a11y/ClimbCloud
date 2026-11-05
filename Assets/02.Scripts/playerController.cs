@@ -56,10 +56,17 @@ public class playerController : MonoBehaviour
     }
 // 골 도착
 
-    void OnTriggerEnter2D(Collider2D other)
+void OnTriggerEnter2D(Collider2D other)
+{
+    Debug.Log("접촉한 오브젝트: " + other.gameObject.name);
+    Debug.Log("접촉한 오브젝트의 태그: " + other.tag);
+
+    if (other.CompareTag("Goal"))
     {
-        Debug.Log("골인!");
+        Debug.Log("골인 성공!");
+        SceneManager.LoadScene("GameClear");
     }
+}
 }
 
 

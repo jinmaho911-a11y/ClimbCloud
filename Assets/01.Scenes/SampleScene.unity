@@ -1066,6 +1066,7 @@ GameObject:
   - component: {fileID: 1163282762}
   - component: {fileID: 1163282761}
   - component: {fileID: 1163282763}
+  - component: {fileID: 1163282764}
   m_Layer: 0
   m_Name: flag_0
   m_TagString: Untagged
@@ -1142,7 +1143,7 @@ Transform:
   m_GameObject: {fileID: 1163282760}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.718, y: 17.261, z: -1}
+  m_LocalPosition: {x: -1.5, y: 2.52, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1194,6 +1195,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.64, y: 1.03}
   m_EdgeRadius: 0
+--- !u!114 &1163282764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163282760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0b7224210161d47b8afa85a44f565a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameCleaer
 --- !u!1001 &1328007713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1417,10 +1430,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDamping: 1
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
